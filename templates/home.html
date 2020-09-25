@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>URL Shortener</title>
+</head>
+<body>
+    <ul>
+        {% for url in urls %}
+        <li>{{ url }}</li>
+        {% endfor %}
+    </ul>
+    <ul>
+        {% for key in keys %}
+        <li>{{ key }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
