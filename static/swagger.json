@@ -1,0 +1,141 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "This is url shortener",
+    "version": "1.0.0",
+    "title": "URL Shortener project for Avito",
+    "contact": {
+      "email": "garkavy_yuri@mail.ru"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licence/MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Add URL",
+      "description": "Example API for getting a short key for URL"
+    }
+  ],
+  "paths": {
+    "/add": {
+      "post": {
+        "tags": [
+          "Add URL"
+        ],
+        "parameters": [
+          {
+            "name": "url",
+            "in": "query",
+            "required": true,
+            "description": "Target URL to make short link"
+          },
+          {
+            "name": "key",
+            "in": "query",
+            "required": false,
+            "description": "Custom key for short URL"
+          }
+        ],
+        "summary": "Return key-value pair of added URL",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "mimetype": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get/{urlKey}": {
+      "get": {
+        "tags": [
+          "Get URL"
+        ],
+        "parameters": [
+          {
+            "name": "urlKey",
+            "in": "path",
+            "required": true,
+            "description": "Key for target URL"
+          }
+        ],
+        "summary": "Return key and value (target) URL",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "mimetype": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get/all/": {
+      "get": {
+        "tags": [
+          "Get all URLs"
+        ],
+        "summary": "Return all key-value pairs for URL",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "mimetype": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "links": {
+                      "type": "array",
+                      "items": {
+                        "properties": {
+                          "key": {
+                            "type": "string"
+                          },
+                          "value": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
